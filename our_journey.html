@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Journey</title>
+    <link rel="stylesheet" href="assets/css/journey.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="journey-container">
+        <header>
+            <h1>Why You Are Special ✨</h1>
+            <p>Just a few reminders of why I love you so much...</p>
+        </header>
+
+        <div class="timeline">
+            <div class="card left">
+                <div class="content">
+                    <h2>🌈 Your Smile</h2>
+                    <p>Every time you smile, my world lights up. You have this contagious energy that makes everything
+                        better.</p>
+                </div>
+            </div>
+            <div class="card right">
+                <div class="content">
+                    <h2>🛡️ My Safe Place</h2>
+                    <p>With you, I feel safe to be myself. Thank you for being my comfort zone and my biggest supporter.
+                    </p>
+                </div>
+            </div>
+            <div class="card left">
+                <div class="content">
+                    <h2>😂 Our Laughs</h2>
+                    <p>Even the cringe moments are precious because they are with you. Never a dull moment!</p>
+                </div>
+            </div>
+            <div class="card right">
+                <div class="content">
+                    <h2>🌹 Just You</h2>
+                    <p>You are unique, rare, and beautiful inside and out. Just like that blue rose.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="surprise-section">
+            <p>I have one last surprise for you...</p>
+            <a href="galaxy/index.html" class="surprise-button">Click Me! 🚀</a>
+        </div>
+    </div>
+
+    <!-- Floating Hearts Animation -->
+    <div class="hearts-container"></div>
+
+    <script>
+        // Simple script to add floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+
+</html>

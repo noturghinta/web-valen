@@ -1,0 +1,244 @@
+/* Ensure the background video covers the whole screen */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    /* Ensures the video stays in the background */
+}
+
+video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+}
+
+/* Mute button container */
+.mute-button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+#mute-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#mute-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Your content's container */
+.container {
+    width: 800px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    /* Ensures content is above the video */
+}
+
+/* Rest of the styles unchanged */
+h1 {
+    font-family: 'Sacramento', cursive;
+    color: black;
+    font-size: 20px;
+    padding: 10px;
+    /* Adds space inside the background */
+    background-color: rgba(255, 255, 255, 0.7);
+    /* White background with 70% opacity */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* Semi-transparent black border */
+    border-radius: 12px;
+    /* Rounded corners for a smoother look */
+    display: inline-block;
+    /* Ensures the background only covers the text, not the full width */
+}
+
+
+
+.letter {
+    width: 600px;
+    height: 400px;
+    display: inline-block;
+}
+
+.rose {
+    width: 180px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    animation: yidon 5s infinite;
+    transform: translateY(40%);
+}
+
+.petal {
+    width: 50px;
+    height: 50px;
+    background: blue;
+    /* Changed to blue */
+    border-radius: 0px 50%;
+    position: absolute;
+    box-shadow: 0 0 10px #0033cc;
+    /* Darker blue shadow */
+    z-index: 2;
+    transform-origin: bottom right;
+    animation: zhankai2 10s infinite;
+}
+
+.petal:nth-child(2) {
+    transform-origin: right bottom;
+    transform: rotate(90deg);
+    background: blue;
+    /* Changed to blue */
+    left: -10px;
+    animation: zhankai1 10s infinite;
+}
+
+.petal:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    left: 10px;
+    top: -20px;
+    z-index: 1;
+    background: blue;
+    /* Changed to blue */
+    transform-origin: bottom right;
+    animation: zhankai2 10s infinite;
+}
+
+.petal:nth-child(4) {
+    transform: rotate(90deg);
+    width: 40px;
+    height: 40px;
+    left: 0px;
+    top: -20px;
+    z-index: 1;
+    background: blue;
+    /* Changed to blue */
+    transform-origin: bottom right;
+    animation: zhankai1 10s infinite;
+}
+
+.petal:nth-child(5) {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    left: 20px;
+    top: -30px;
+    z-index: 0;
+    background: blue;
+    /* Changed to blue */
+}
+
+.leaf {
+    position: absolute;
+    top: 120px;
+    left: -115px;
+}
+
+.stem {
+    width: 240px;
+    height: 40px;
+    background: transparent;
+    border: 8px solid #3ac78a;
+    border-color: #773a77 transparent transparent transparent;
+    border-radius: 50% 50%;
+    transform: rotate(100deg);
+}
+
+.leafs {
+    width: 50px;
+    height: 40px;
+    border-radius: 0px 50%;
+    background: #773a77;
+    position: absolute;
+    top: 0;
+    left: 100px;
+    z-index: 49;
+}
+
+.leafs:nth-child(2) {
+    width: 40px;
+    height: 20px;
+    top: 40px;
+    left: 140px;
+    transform: rotate(120deg);
+}
+
+@keyframes yidon {
+    50% {
+        transform: translateY(35%);
+    }
+
+    100% {
+        transform: translateY(40%);
+    }
+}
+
+@keyframes zhankai1 {
+    50% {
+        transform: rotate(110deg);
+    }
+
+    100% {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes zhankai2 {
+    50% {
+        transform: rotate(-20deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Start Button Styles */
+.start-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    color: white;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+
+.start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+    background: linear-gradient(45deg, #ff8e53, #ff6b6b);
+}
