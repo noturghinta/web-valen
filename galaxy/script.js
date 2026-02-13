@@ -314,6 +314,9 @@ for (let group = 0; group < numGroups; group++) {
   const img = new window.Image();
   img.crossOrigin = "Anonymous";
   img.src = heartImages[group];
+  img.onerror = (e) => {
+    console.error(`Failed to load image: ${img.src}`, e);
+  };
   img.onload = () => {
     const neonTexture = createNeonTexture(img, 256);
 
