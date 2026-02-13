@@ -79,7 +79,8 @@ const galaxyParameters = {
   outsideColor: new THREE.Color(0x48b8b8),
 };
 
-const defaultHeartImages = Array.from({ length: 2 }, (_, i) => `/galaxy/images/img${i + 1}.jpg`);
+// Expanded image support: automatically looks for img1.jpg through img20.jpg
+const defaultHeartImages = Array.from({ length: 20 }, (_, i) => `/galaxy/images/img${i + 1}.jpg`);
 
 const heartImages = [
   ...(window.dataCCD?.data?.heartImages || []),
@@ -125,7 +126,7 @@ for (let i = 0; i < galaxyParameters.count; i++) {
   const spinAngle = radius * galaxyParameters.spin;
 
   const randomX = (Math.random() - 0.5) * galaxyParameters.randomness * radius;
-  const randomY = (Math.random() - 0.5) * galaxyParameters.randomness * radius * 1.2; 
+  const randomY = (Math.random() - 0.5) * galaxyParameters.randomness * radius * 1.2;
   const randomZ = (Math.random() - 0.5) * galaxyParameters.randomness * radius;
   const totalAngle = branchAngle + spinAngle;
 
@@ -440,7 +441,7 @@ function createShootingStar() {
   });
 
   const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-  planet.add(atmosphere); 
+  planet.add(atmosphere);
   const curve = createRandomCurve();
   const trailPoints = [];
   for (let i = 0; i < trailLength; i++) {
@@ -601,7 +602,7 @@ function createTextRings() {
   window.textRings = [];
 
   for (let i = 0; i < numRings; i++) {
-    const text = ringTexts[i % ringTexts.length] + '   '; 
+    const text = ringTexts[i % ringTexts.length] + '   ';
     const ringRadius = baseRingRadius + i * ringSpacing;
 
     function getCharType(char) {
@@ -652,7 +653,7 @@ function createTextRings() {
     let repeatedTextSegment = singleText + separator;
 
     let segmentWidth = tempCtx.measureText(repeatedTextSegment).width;
-    let textureWidthCircumference = 2 * Math.PI * ringRadius * 180; 
+    let textureWidthCircumference = 2 * Math.PI * ringRadius * 180;
     let repeatCount = Math.ceil(textureWidthCircumference / segmentWidth);
 
     let fullText = '';
@@ -682,7 +683,7 @@ function createTextRings() {
     ctx.shadowBlur = 18;
     ctx.lineWidth = 7;
     ctx.strokeStyle = '#fff';
-    ctx.strokeText(fullText, 0, textureHeight * 0.82); 
+    ctx.strokeText(fullText, 0, textureHeight * 0.82);
 
 
     ctx.shadowColor = '#ffb3de';
@@ -715,9 +716,9 @@ function createTextRings() {
     ringGroup.userData = {
       ringRadius: ringRadius,
       angleOffset: 0.15 * Math.PI * 0.5,
-      speed: 0.002 + 0.00025, 
+      speed: 0.002 + 0.00025,
       tiltSpeed: 0, rollSpeed: 0, pitchSpeed: 0,
-      tiltAmplitude: Math.PI / 3, rollAmplitude: Math.PI / 6, pitchAmplitude: Math.PI / 8, 
+      tiltAmplitude: Math.PI / 3, rollAmplitude: Math.PI / 6, pitchAmplitude: Math.PI / 8,
       tiltPhase: Math.PI * 2, rollPhase: Math.PI * 2, pitchPhase: Math.PI * 2,
       isTextRing: true
     };
@@ -772,7 +773,7 @@ function animatePlanetSystem() {
       const verticalBob = Math.sin(time * (userData.tiltSpeed * 0.7) + userData.tiltPhase) * 0.3;
       ringGroup.position.y = verticalBob;
 
-      const pulse = (Math.sin(time * 1.5 + index) + 1) / 2; 
+      const pulse = (Math.sin(time * 1.5 + index) + 1) / 2;
       const textMesh = ringGroup.children[0];
       if (textMesh && textMesh.material) {
 
@@ -784,31 +785,6 @@ function animatePlanetSystem() {
 }
 
 
-let galaxyAudio = null;
-
-function preloadGalaxyAudio() {
-  const audioSources = [
-   "https://www.youtube.com/watch?v=d4OMqGKBl6E&list=RDd4OMqGKBl6E&start_radio=1&ab_channel=ARS"
-  ];
-
-  const randomIndex = Math.floor(Math.random() * audioSources.length);
-  const selectedSrc = audioSources[randomIndex];
-
-  galaxyAudio = new Audio(selectedSrc);
-  galaxyAudio.loop = true;
-  galaxyAudio.volume = 1.0;
-
-  galaxyAudio.preload = "auto";
-}
-
-function playGalaxyAudio() {
-  if (galaxyAudio) {
-    galaxyAudio.play().catch(err => {
-      console.warn("Audio play blocked or delayed:", err);
-    });
-  }
-}
-preloadGalaxyAudio();
 
 
 
@@ -843,14 +819,14 @@ function createHintIcon() {
 
   const backgroundGeometry = new THREE.ShapeGeometry(cursorShape);
   const backgroundMaterial = new THREE.MeshBasicMaterial({
-    color: 0xffffff, 
+    color: 0xffffff,
     side: THREE.DoubleSide
   });
   const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
 
   const foregroundGeometry = new THREE.ShapeGeometry(cursorShape);
   const foregroundMaterial = new THREE.MeshBasicMaterial({
-    color: 0xffffff, 
+    color: 0xffffff,
     side: THREE.DoubleSide
   });
   const foregroundMesh = new THREE.Mesh(foregroundGeometry, foregroundMaterial);
@@ -862,7 +838,7 @@ function createHintIcon() {
   cursorVisuals.position.y = h / 2;
   cursorVisuals.rotation.x = Math.PI / 2;
 
-  
+
   const ringGeometry = new THREE.RingGeometry(1.8, 2.0, 32);
   const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
   const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
@@ -874,7 +850,7 @@ function createHintIcon() {
   hintIcon.add(ringMesh);
 
 
-  hintIcon.position.set(1.5, 1.5, 15); 
+  hintIcon.position.set(1.5, 1.5, 15);
 
   hintIcon.scale.set(0.8, 0.8, 0.8);
   hintIcon.lookAt(planet.position);
@@ -1101,7 +1077,7 @@ function createHintText() {
 
 
 createShootingStar();
-createHintIcon(); 
+createHintIcon();
 createHintText();
 
 window.addEventListener('resize', () => {
@@ -1207,7 +1183,6 @@ function onCanvasClick(event) {
     introStarted = true;
     fadeInProgress = true;
     document.body.classList.add("intro-started");
-    playGalaxyAudio();
 
     startCameraAnimation();
 

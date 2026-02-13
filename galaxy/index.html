@@ -16,6 +16,7 @@
       }
     }
   </script>
+  <script src="../assets/js/music-manager.js"></script>
   <style>
     #player {
       display: none;
@@ -56,45 +57,26 @@
 
   <div id="dark-overlay"></div>
   <div id="info"></div>
-  <button id="musicButton" disabled>Mainkan Musik 🎵</button>
-  <div id="player"></div>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <button id="musicButton">Musik 🎵</button>
   <script>
-    let player;
-    const startTime = 227;
-    const endTime = 261;
-    window.onYouTubeIframeAPIReady = function () {
-      player = new YT.Player('player', {
-        height: '0',
-        width: '0',
-        videoId: 'd4OMqGKBl6E',
-        playerVars: {
-          autoplay: 0,
-          start: startTime,
-          end: endTime,
-          controls: 0,
-          loop: 1,
-          playlist: 'd4OMqGKBl6E'
-        },
-        events: {
-          onReady: () => {
-            const btn = document.getElementById('musicButton');
-            btn.disabled = false;
-            btn.innerText = "Mainkan Musik 🎵";
-          },
-          onStateChange: (event) => {
-            if (event.data === YT.PlayerState.ENDED) {
-              player.seekTo(90);
-            }
-          }
-        }
-      });
+    const musicBtn = document.getElementById('musicButton');
+    const updateMuteUI = () => {
+      if (window.musicManager.isMuted) {
+        musicBtn.innerText = "Mute 🔇";
+        musicBtn.style.color = "#ff6b6b";
+      } else {
+        musicBtn.innerText = "Musik 🎵";
+        musicBtn.style.color = "white";
+      }
     };
+    updateMuteUI();
 
-    document.getElementById('musicButton').addEventListener('click', () => {
-      if (player) {
-        player.playVideo();
-        document.getElementById('musicButton').style.display = 'none';
+    musicBtn.addEventListener('click', () => {
+      const isMuted = window.musicManager.toggleMute();
+      updateMuteUI();
+
+      if (!isMuted && window.musicManager.audio.paused) {
+        window.musicManager.play();
       }
     });
   </script>

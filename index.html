@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="assets/js/music-manager.js"></script>
 </head>
+
 <body>
     <!-- Video Background -->
     <div class="video-background">
@@ -31,14 +34,15 @@
                 Gatau mau bilang gimana tapi kamu udah jadi salah satu moral support terbaik aku!! <br>
                 Jangan bosen ya sama wika! <br><br>
                 I know it's not much but I hope you happy with this. <br>
-                As your request, I present you with a blue rose symbolizing the unattainable and the extraordinary, rare, unique, and endlessly beautiful.
+                As your request, I present you with a blue rose symbolizing the unattainable and the extraordinary,
+                rare, unique, and endlessly beautiful.
             </h1>
-            
+
             <div style="text-align: center; margin-top: 30px;">
                 <a href="our_journey.html" class="start-button">Start Our Journey ❤️</a>
             </div>
         </div>
-        
+
         <div class="rose">
             <div class="flower">
                 <div class="petal"></div>
@@ -56,19 +60,29 @@
     </div>
 
     <script>
-        // JavaScript for controlling the mute/unmute functionality
-        const video = document.getElementById('background-video');
+        // Music Manager Integration
         const muteButton = document.getElementById('mute-button');
 
-        muteButton.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
-                muteButton.innerHTML = 'Mute <span style="font-size:1.2em">🔊</span>';
-            } else {
-                video.muted = true;
+        // Initial UI Update
+        const updateMuteUI = () => {
+            if (window.musicManager.isMuted) {
                 muteButton.innerHTML = 'Unmute <span style="font-size:1.2em">🔇</span>';
+            } else {
+                muteButton.innerHTML = 'Mute <span style="font-size:1.2em">🔊</span>';
+            }
+        };
+        updateMuteUI();
+
+        muteButton.addEventListener('click', () => {
+            const isMuted = window.musicManager.toggleMute();
+            updateMuteUI();
+
+            // If first interaction or just unmuted, try to play
+            if (!isMuted && window.musicManager.audio.paused) {
+                window.musicManager.play();
             }
         });
     </script>
 </body>
+
 </html>
