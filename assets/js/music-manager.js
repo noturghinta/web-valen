@@ -34,8 +34,14 @@ class MusicManager {
             isPlaying: false
         };
 
-        this.audio.currentTime = savedState.currentTime;
         this.audio.muted = savedState.isMuted;
+
+        // Ensure we seek ONLY after metadata is loaded to prevent reset to 0
+        this.audio.addEventListener('loadedmetadata', () => {
+            if (savedState.currentTime > 0) {
+                this.audio.currentTime = savedState.currentTime;
+            }
+        });
 
         // Update state periodically and on unload
         setInterval(() => {

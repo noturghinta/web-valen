@@ -79,8 +79,8 @@ const galaxyParameters = {
   outsideColor: new THREE.Color(0x48b8b8),
 };
 
-// Expanded image support: automatically looks for img1.jpg through img20.jpg
-const defaultHeartImages = Array.from({ length: 20 }, (_, i) => `/galaxy/images/img${i + 1}.jpg`);
+// Expanded image support: automatically looks for img1.jpeg through img20.jpeg
+const defaultHeartImages = Array.from({ length: 20 }, (_, i) => `images/img${i + 1}.jpeg`);
 
 const heartImages = [
   ...(window.dataCCD?.data?.heartImages || []),

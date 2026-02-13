@@ -40,6 +40,32 @@
     #musicButton:hover {
       background-color: #ffffff30;
     }
+
+    .back-button-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 9999;
+    }
+
+    #back-button {
+      padding: 12px 20px;
+      background-color: #ffffff10;
+      color: white;
+      border: 1px solid white;
+      border-radius: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      font-family: sans-serif;
+      /* fallback */
+    }
+
+    #back-button:hover {
+      background-color: #ffffff30;
+    }
   </style>
 </head>
 
@@ -57,6 +83,12 @@
 
   <div id="dark-overlay"></div>
   <div id="info"></div>
+  <div id="info"></div>
+
+  <div class="back-button-container">
+    <a id="back-button" href="../our_journey.html">⬅️ Back</a>
+  </div>
+
   <button id="musicButton">Musik 🎵</button>
   <script>
     const musicBtn = document.getElementById('musicButton');
