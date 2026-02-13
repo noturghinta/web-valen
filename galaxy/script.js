@@ -80,7 +80,7 @@ const galaxyParameters = {
 };
 
 // Expanded image support: automatically looks for img1.jpeg through img20.jpeg
-const defaultHeartImages = Array.from({ length: 20 }, (_, i) => `images/img${i + 1}.jpeg`);
+const defaultHeartImages = Array.from({ length: 20 }, (_, i) => `/galaxy/images/img${i + 1}.jpeg`);
 
 const heartImages = [
   ...(window.dataCCD?.data?.heartImages || []),
