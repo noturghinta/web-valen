@@ -20,6 +20,7 @@ class MusicManager {
         this.audio = document.createElement('audio');
         this.audio.id = 'global-bg-music';
         this.audio.loop = true;
+        this.audio.volume = 0.2; // Set volume to 20%
         this.audio.src = this.audioSrc;
 
         this.audio.addEventListener('canplay', () => console.log("MusicManager: Audio can play"));

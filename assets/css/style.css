@@ -53,14 +53,15 @@ video {
 
 /* Your content's container */
 .container {
-    width: 800px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
-    /* Ensures content is above the video */
 }
 
 /* Rest of the styles unchanged */
@@ -82,11 +83,60 @@ h1 {
 
 
 
-.letter {
-    width: 600px;
-    height: 400px;
-    display: inline-block;
+/* Letter Card Styling */
+.letter-card {
+    width: 650px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    max-height: 80vh;
+    overflow-y: auto;
 }
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.title {
+    font-family: 'Sacramento', cursive;
+    color: #ff6b6b;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.body-text {
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.signature {
+    font-family: 'Sacramento', cursive;
+    font-size: 2rem;
+    color: #ff6b6b;
+    text-align: right;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.rose-container {
+    position: absolute;
+    bottom: 70px;
+    right: -20px;
+    transform: scale(0.5);
+    z-index: 3;
+    pointer-events: none;
+}
+
 
 .rose {
     width: 180px;
@@ -95,7 +145,7 @@ h1 {
     right: 0;
     display: inline-block;
     animation: yidon 5s infinite;
-    transform: translateY(40%);
+    /* Removed translate as it's handled by container now */
 }
 
 .petal {
